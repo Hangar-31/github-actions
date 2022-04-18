@@ -17,9 +17,9 @@ jobs:
         with:
           slack-function: update-message
           slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
-          slack-channel: ${{ fromJson(steps.send-message.outputs.slack-result).response.channel }}
+          slack-channel: ${{ fromJson(github.initial-slack.steps.send-message.outputs.slack-result).response.channel }}
           slack-update-message-text: "Deploy for <https://github.com/${{ github.repository }} |  ${{ github.repository }}> *${{github.ref_name}}*. View Progress <https://github.com/${{ github.repository }}/actions/runs/${{github.run_id}}?check_suite_focus=true | Here>. :white_check_mark:"
-          slack-update-message-ts: ${{ fromJson(steps.send-message.outputs.slack-result).response.message.ts }}
+          slack-update-message-ts: ${{ fromJson(github.initial-slack.steps.send-message.outputs.slack-result).response.message.ts }}
 
       - name: Send Thread Message
         uses: archive/github-actions-slack@v2.4.0
@@ -27,6 +27,6 @@ jobs:
         with:
           slack-function: send-message
           slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
-          slack-channel: ${{ fromJson(steps.send-message.outputs.slack-result).response.channel }}
+          slack-channel: ${{ fromJson(github.initial-slack.steps.send-message.outputs.slack-result).response.channel }}
           slack-text: "<@U013CG61YMA> Failed Deployment"
-          slack-optional-thread_ts: ${{ fromJson(steps.send-message.outputs.slack-result).response.message.ts }}
+          slack-optional-thread_ts: ${{ fromJson(github.initial-slack.steps.send-message.outputs.slack-result).response.message.ts }}
