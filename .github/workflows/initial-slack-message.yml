@@ -1,0 +1,25 @@
+name: Initial Slack Message
+
+on:
+  workflow_call:
+    secrets:
+      SLACK_TOKEN:
+        required: true
+      SLACK_CHANNEL:
+        required: true
+
+jobs:
+  initial-slack:
+    environment: Main
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: echo ${{secrets.SLACK_CHANNEL }} | sed 's/./& /g'
+      - name: Send Slack Message
+        uses: archive/github-actions-slack@v2.4.0
+        id: send-message
+        with:
+          slack-function: send-message
+          slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
+          slack-channel: "${{secrets.SLACK_CHANNEL}}"
+          slack-text: Deploy for <https://github.com/${{ github.repository }} |  ${{ github.repository }}> *${{github.ref_name}}*. View Progress <https://github.com/${{ github.repository }}/actions/runs/${{github.run_id}}?check_suite_focus=true | Here>.

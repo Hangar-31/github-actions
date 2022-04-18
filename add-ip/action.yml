@@ -1,0 +1,20 @@
+name: Remove IP
+
+inputs:
+  database_id:
+    type: string
+    required: true
+  DO_TOKEN:
+    type: string
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Add IP address to trusted source (managed database)
+      uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
+      if: always()
+      with:
+        action: "add"
+        database_id: ${{inputs.database_id}}
+        digitalocean_token: "${{ inputs.DO_TOKEN }}"
