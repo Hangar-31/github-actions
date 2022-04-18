@@ -11,6 +11,8 @@ jobs:
     environment: Main
     runs-on: ubuntu-latest
     steps:
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
       - name: Send Thread Message
         uses: archive/github-actions-slack@v2.4.0
         if: success()
