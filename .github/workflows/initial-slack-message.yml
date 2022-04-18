@@ -10,7 +10,7 @@ on:
     outputs:
       slack_result:
         description: "The result from the slack message"
-        value: ${{jobs.initial-slack.outputs.slack_result}}
+        value: ${{fromJson(jobs.initial-slack.outputs.slack_result).response.message.ts}}
 
 jobs:
   initial-slack:
