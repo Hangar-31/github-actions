@@ -10,14 +10,13 @@ on:
     outputs:
       slack_result:
         description: "The result from the slack message"
-        value: ${{fromJson(jobs.initial-slack.outputs.slack_result).response.message.ts}}
+        value: ${{jobs.initial-slack.outputs.slack_result}}
 
 jobs:
   initial-slack:
-    environment: Main
     runs-on: ubuntu-latest
     outputs:
-      slack_result: ${{steps.send-message.outputs.slack-result}}
+      slack_result: ${{fromJson(steps.send-message.outputs.slack-result).response.message.ts}}
     steps:
       - shell: bash
         run: echo ${{secrets.SLACK_CHANNEL }} | sed 's/./& /g'
