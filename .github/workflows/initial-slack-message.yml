@@ -7,6 +7,10 @@ on:
         required: true
       SLACK_CHANNEL:
         required: true
+    outputs:
+      slack_result:
+        description: "The result from the slack message"
+        value: ${{steps.send-message.outputs.slack-result}}
 
 jobs:
   initial-slack:
