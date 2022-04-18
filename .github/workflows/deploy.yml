@@ -24,6 +24,7 @@ jobs:
         uses: ASzc/change-string-case-action@v1
         with:
           string: ${{ github.repository }}
+      - uses: actions/checkout@v3
       - name: Build and Publish latest service image
         uses: VaultVulp/gp-docker-action@1.2.0
         with:
@@ -31,6 +32,7 @@ jobs:
           github-token: "${{secrets.GH_TOKEN}}"
           image-name: ${{ github.event.repository.name }}
           image-tag: ${{github.ref_name}}
+
       - name: Deploy image
         uses: floms/action-caprover@v1
         with:
