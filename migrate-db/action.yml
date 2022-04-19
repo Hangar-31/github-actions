@@ -1,9 +1,10 @@
 name: Migrate DB
+description: Run db:update on database
 
 inputs:
   DATABASE_URL:
-    type: string
     required: true
+    description: URL of your database
 
 runs:
   using: "composite"
@@ -15,5 +16,8 @@ runs:
         node-version: "14"
         cache: "npm"
     - run: echo "DATABASE_URL=${{inputs.DATABASE_URL}}" > .env
+      shell: bash
     - run: npm install
+      shell: bash
     - run: npm run db:update
+      shell: bash

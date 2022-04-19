@@ -1,12 +1,13 @@
-name: Remove IP
+name: Add IP
+description: Add an IP from the trusted sources of DO database
 
 inputs:
   database_id:
-    type: string
     required: true
+    description: The DO database's id
   DO_TOKEN:
-    type: string
     required: true
+    description: The token used to access DO
 
 runs:
   using: "composite"
