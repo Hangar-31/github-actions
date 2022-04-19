@@ -1,0 +1,27 @@
+name: Final Slack Message
+
+on:
+  workflow_call:
+    inputs:
+      slack_result:
+        type: string
+        required: true
+    secrets:
+      SLACK_TOKEN:
+        required: true
+      SLACK_CHANNEL:
+        required: true
+
+jobs:
+  failed-slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Thread Message
+        uses: archive/github-actions-slack@v2.4.0
+        if: failure()
+        with:
+          slack-function: send-message
+          slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
+          slack-channel: ${{ secrets.SLACK_CHANNEL }}
+          slack-text: "<@U013CG61YMA> Failed Deployment"
+          slack-optional-thread_ts: ${{ inputs.slack_result }}
