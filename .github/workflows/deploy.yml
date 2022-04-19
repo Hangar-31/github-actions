@@ -23,6 +23,8 @@ jobs:
         with:
           string: ${{ github.repository }}
       - uses: actions/checkout@v3
+      - name: Dump context
+        uses: crazy-max/ghaction-dump-context@v1
       - name: Build and Publish latest service image
         uses: VaultVulp/gp-docker-action@1.2.0
         with:
@@ -36,5 +38,5 @@ jobs:
         with:
           host: ${{inputs.server}}
           password: ${{inputs.password}}
-          app: "${{inputs.name}}-${{github.ref_name}}"
+          app: "${{ github.event.repository.name }}-${{github.ref_name}}"
           image: "ghcr.io/${{ steps.string.outputs.lowercase }}/${{ github.event.repository.name }}:${{github.ref_name}}"
