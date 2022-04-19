@@ -1,0 +1,19 @@
+name: Migrate DB
+
+inputs:
+  DATABASE_URL:
+    type: string
+    required: true
+
+runs:
+  using: "composite"
+
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "14"
+        cache: "npm"
+    - run: echo "DATABASE_URL=${{inputs.DATABASE_URL}}" > .env
+    - run: npm install
+    - run: npm run db:update
