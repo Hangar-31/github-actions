@@ -1,5 +1,4 @@
 name: Migrate DB
-description: Run db:update on database
 
 on:
   workflow_call:
