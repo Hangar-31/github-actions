@@ -9,9 +9,6 @@ on:
       password:
         type: string
         required: true
-      custom-args:
-        type: string
-        required: false
     secrets:
       GH_TOKEN:
         required: true
@@ -25,17 +22,6 @@ jobs:
         uses: ASzc/change-string-case-action@v1
         with:
           string: ${{ github.repository }}
-      - uses: actions/checkout@v3
-      - name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
-      - name: Build and Publish latest service image
-        uses: VaultVulp/gp-docker-action@1.2.0
-        with:
-          # generate the PAT
-          github-token: "${{secrets.GH_TOKEN}}"
-          image-name: ${{ github.event.repository.name }}
-          image-tag: ${{github.ref_name}}
-          custom-args: ${{inputs.custom-args}}
 
       - name: Deploy image
         uses: floms/action-caprover@v1

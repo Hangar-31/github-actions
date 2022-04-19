@@ -1,0 +1,22 @@
+name: Build Image
+
+on:
+  workflow_call:
+    inputs:
+      custom-args:
+        type: string
+        required: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and Publish latest service image
+        uses: VaultVulp/gp-docker-action@1.2.0
+        with:
+          # generate the PAT
+          github-token: "${{secrets.GH_TOKEN}}"
+          image-name: ${{ github.event.repository.name }}
+          image-tag: ${{github.ref_name}}
+          custom-args: ${{inputs.custom-args}}
