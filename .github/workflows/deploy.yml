@@ -9,9 +9,6 @@ on:
       password:
         type: string
         required: true
-    secrets:
-      GH_TOKEN:
-        required: true
 
 jobs:
   deploy:

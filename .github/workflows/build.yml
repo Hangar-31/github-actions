@@ -16,7 +16,7 @@ jobs:
         uses: VaultVulp/gp-docker-action@1.2.0
         with:
           # generate the PAT
-          github-token: "${{secrets.GH_TOKEN}}"
+          github-token: ${{secrets.GITHUB_TOKEN}}
           image-name: ${{ github.event.repository.name }}
           image-tag: ${{github.ref_name}}
           custom-args: ${{inputs.custom-args}}
