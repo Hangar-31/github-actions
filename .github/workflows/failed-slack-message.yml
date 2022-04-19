@@ -13,12 +13,11 @@ on:
         required: true
 
 jobs:
-  failed-slack:
+  final-slack:
     runs-on: ubuntu-latest
     steps:
       - name: Send Thread Message
         uses: archive/github-actions-slack@v2.4.0
-        if: failure()
         with:
           slack-function: send-message
           slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"

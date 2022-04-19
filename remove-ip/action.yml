@@ -15,7 +15,6 @@ runs:
   steps:
     - name: Remove IP address to trusted source (managed database)
       uses: GarreauArthur/manage-digital-ocean-managed-database-trusted-sources-gh-action@main
-      if: always()
       with:
         action: "remove"
         database_id: ${{inputs.database_id}}
