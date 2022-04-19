@@ -9,6 +9,9 @@ on:
       password:
         type: string
         required: true
+      custom-args:
+        type: string
+        required: false
     secrets:
       GH_TOKEN:
         required: true
@@ -32,6 +35,7 @@ jobs:
           github-token: "${{secrets.GH_TOKEN}}"
           image-name: ${{ github.event.repository.name }}
           image-tag: ${{github.ref_name}}
+          custom-args: ${{inputs.custom-args}}
 
       - name: Deploy image
         uses: floms/action-caprover@v1
