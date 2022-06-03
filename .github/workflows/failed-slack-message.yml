@@ -22,5 +22,5 @@ jobs:
           slack-function: send-message
           slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
           slack-channel: ${{ secrets.SLACK_CHANNEL }}
-          slack-text: "<@U013CG61YMA> Failed Deployment"
+          slack-text: "<@U013CG61YMA> <@channel> Failed Deployment"
           slack-optional-thread_ts: ${{ inputs.slack_result }}
