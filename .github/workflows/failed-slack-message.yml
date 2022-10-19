@@ -1,4 +1,4 @@
-name: Final Slack Message
+name: Failed Slack Message
 
 on:
   workflow_call:
@@ -13,7 +13,7 @@ on:
         required: true
 
 jobs:
-  final-slack:
+  failed-slack:
     runs-on: ubuntu-latest
     steps:
       - name: Send Thread Message
@@ -22,5 +22,5 @@ jobs:
           slack-function: send-message
           slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
           slack-channel: ${{ secrets.SLACK_CHANNEL }}
-          slack-text: "<!channel> Failed Deployment"
           slack-optional-thread_ts: ${{ inputs.slack_result }}
+          slack-text: "<!channel> Failed Deployment"
