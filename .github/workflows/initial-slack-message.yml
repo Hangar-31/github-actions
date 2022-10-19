@@ -21,7 +21,7 @@ jobs:
       - shell: bash
         run: echo ${{secrets.SLACK_CHANNEL }} | sed 's/./& /g'
       - name: Send Slack Message
-        uses: archive/github-actions-slack@v2.4.0
+        uses: archive/github-actions-slack@v2.6.0
         id: send-message
         with:
           slack-function: send-message

@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Thread Message
-        uses: archive/github-actions-slack@v2.4.0
+        uses: archive/github-actions-slack@v2.6.0
         with:
           slack-function: update-message
           slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
