@@ -22,5 +22,5 @@ jobs:
           slack-function: update-message
           slack-bot-user-oauth-access-token: "${{secrets.SLACK_TOKEN}}"
           slack-channel: ${{ secrets.SLACK_CHANNEL }}
-          slack-optional-thread_ts: ${{ inputs.slack_result }}
+          slack-update-message-ts: ${{ inputs.slack_result }}
           slack-update-message-text: "Deploy for <https://github.com/${{ github.repository }} |  ${{ github.repository }}> *${{github.ref_name}}*. View Progress <https://github.com/${{ github.repository }}/actions/runs/${{github.run_id}}?check_suite_focus=true | Here>. :white_check_mark:"
