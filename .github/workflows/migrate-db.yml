@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "14"
+          node-version: "lts-alpine"
           cache: "npm"
       - run: echo "DATABASE_URL=${{secrets.DATABASE_URL}}" > .env
         shell: bash
