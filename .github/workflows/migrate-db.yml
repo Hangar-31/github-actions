@@ -35,7 +35,7 @@ jobs:
           cache: "npm"
       
       - name: Authenticate to GitHub Packages
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
       
       - name: Add DB URL
         run: echo "DATABASE_URL=${{secrets.DATABASE_URL}}" > .env
