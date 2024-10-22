@@ -24,16 +24,29 @@ jobs:
           action: "add"
           database_id: ${{secrets.database_id}}
           digitalocean_token: "${{ secrets.DO_TOKEN }}"
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Node 
+        uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
           cache: "npm"
-      - run: echo "DATABASE_URL=${{secrets.DATABASE_URL}}" > .env
+      
+      - name: Authenticate to GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+      
+      - name: Add DB URL
+        run: echo "DATABASE_URL=${{secrets.DATABASE_URL}}" > .env
         shell: bash
-      - run: npm install --force
+      
+      - name: NPM Install
+        run: npm install --force
         shell: bash
-      - run: npm run db:update
+      
+      - name: NPM DB Update
+        run: npm run db:update
         shell: bash
 
       - name: Remove IP address to trusted source (managed database)
